@@ -18,11 +18,11 @@ var server = http.createServer(function(req, res) {
 			var timeStartIndex = qvalue.indexOf('T') + 1;
 			var timeEndIndex = qvalue.indexOf('.');
 			var time = qvalue.substring(timeStartIndex, timeEndIndex).split(':');
-
+			console.log(time[0]);
 			result = {
-				"hour" : time[0],
-				"minute" : time[1],
-				"second" : time[2]
+				"hour" : parseInt(time[0]) + 2,
+				"minute" : parseInt(time[1]),
+				"second" : parseInt(time[2])
 			}
 		}
 
