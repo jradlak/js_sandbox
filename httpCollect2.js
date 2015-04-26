@@ -15,6 +15,6 @@ function collect(url, ready) {
 collect(args[2], function ready () {
 	collect(args[3], function ready2 () {
 		collect(args[4], function ready3 () {
-		});	
+		});
 	});
 });
