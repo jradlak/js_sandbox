@@ -18,4 +18,27 @@ process.stdin.pipe(tr);
 
 var stream = tr.select('.loud').createStream();
 
-stream.pipe(stream2).pipe(process.stdout);
+var concatStdin = ''
+
+process.stdin
+  .pipe(concat(function(body) {
+    var result = body.toString();
+    concatStdin = result;
+  }));
+
+
+var concatFilteredBefore = '';
+
+stream.pipe(stream).pipe(concat(function(body) {
+  var result = body.toString();
+  concatFilteded = result;
+}));
+
+var concatFiltered = ''
+
+// dokończyć: zamiana łańcucha przefiltrowanego przed upperCase na po upperCase
+
+stream.pipe(stream).pipe(concat(function(body) {
+  var result = body.toString();
+  concatFilteded = result;
+}));
