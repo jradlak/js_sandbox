@@ -1,18 +1,8 @@
 var http = require('http');
 var trumpet = require('trumpet');
-var through = require('through2');
-var stream2 = through(write, end);
+var concat = require('concat-stream');
 
 var tr = trumpet();
-
-function write(buffer, encoding, next) {
-  this.push(buffer.toString().toUpperCase());
-  next();
-}
-
-function end(done) {
-  done();
-}
 
 process.stdin.pipe(tr);
 
@@ -24,21 +14,28 @@ process.stdin
   .pipe(concat(function(body) {
     var result = body.toString();
     concatStdin = result;
+
+    filterStream();
+}));
+
+function filterStream() {
+  var concatFilteredBefore = '';
+
+  stream.pipe(concat(function(body) {
+    var concatFilteredBefore = body.toString();
+    toUpperStream(concatFilteredBefore);
   }));
+}
+
+function toUpperStream(concatFilteredBefore) {
+    var result = concatStdin.replace(concatFilteredBefore, concatFilteredBefore.toUpperCase());
+    console.log(result.substring(0, result.length - 1));
+}
+
+// działa, ale to powyższe rozwiązanie to jest jakiś koszmar ;) Poniżej rozwiązanie referencyjne
+
+/*
 
 
-var concatFilteredBefore = '';
 
-stream.pipe(stream).pipe(concat(function(body) {
-  var result = body.toString();
-  concatFilteded = result;
-}));
-
-var concatFiltered = ''
-
-// dokończyć: zamiana łańcucha przefiltrowanego przed upperCase na po upperCase
-
-stream.pipe(stream).pipe(concat(function(body) {
-  var result = body.toString();
-  concatFilteded = result;
-}));
+*/
