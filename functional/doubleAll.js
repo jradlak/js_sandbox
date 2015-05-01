@@ -6,4 +6,4 @@ function doubleAll(numbers) {
   return doubles;
 }
 
-module.exports = doubleAll
+module.exports = doubleAll;
