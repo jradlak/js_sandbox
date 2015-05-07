@@ -3,7 +3,7 @@ function countWords(inputWords) {
   var init = {};
   init[firstElement] = 0;
   return inputWords.reduce(function(a, b) {
-    if (a[b] == undefined) {
+    if (a[b] === undefined) {
       a[b] = 1;
     } else {
       a[b] = a[b] + 1;
@@ -16,7 +16,7 @@ function countWords(inputWords) {
 //test
 console.log(countWords(['Apple', 'Banana', 'Apple', 'Durian', 'Durian', 'Durian']));
 
-module.exports = countWords
+module.exports = countWords;
 
 // solution above is rather crappy ;) (although correct), below reference solution:
 /*

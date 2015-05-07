@@ -9,4 +9,4 @@ function duckCount() {
 
 // It works but better use filter than reduce!!!
 
-module.exports = duckCount
+module.exports = duckCount;
