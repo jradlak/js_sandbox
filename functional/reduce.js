@@ -1,13 +1,13 @@
 function reduce(arr, fn, initial) {
-  var result = undefined;
+  var result;
   function worker(arr, fn, work, ind) {
-    if (arr.length == 0) {
+    if (arr.length === 0) {
       result = work;
       return;
     }
     var prev = work;
     var curr = fn(prev, arr[0], ind, arr);
-    var arr = arr.slice(1);
+    arr = arr.slice(1);
     worker(arr, fn, curr, ++ind);
   }
 
